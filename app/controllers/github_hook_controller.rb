@@ -58,7 +58,7 @@ class GithubHookController < ApplicationController
 
   # Fetches updates from the remote repository
   def update_repository(repository)
-    command = git_command('fetch origin', repository)
+    command = git_command('remote update --prune', repository)
     if exec(command)
       command = git_command("fetch origin '+refs/heads/*:refs/heads/*'", repository)
       exec(command)
